@@ -1,19 +1,11 @@
 import sys
 
 from birthday_paradox import DAYS_IN_YEAR
-from birthday_paradox import get_string_date
 from birthday_paradox import generate_date_list
 
 # PYTHON_VERSION = (3, 9)                 # set a version manually
 PYTHON_VERSION = sys.version_info     # get a current version
 
-
-class TestGetStringDate:
-    def test_return_value(self):
-        self.ordinal = 1
-        assert get_string_date(self.ordinal) == 'Jan 1'
-        self.ordinal = 365
-        assert get_string_date(self.ordinal) == 'Dec 31'
 
 class TestGenerateDataList:
     length = 23

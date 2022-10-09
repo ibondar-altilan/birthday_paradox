@@ -41,10 +41,14 @@ profile.print_stats()
   2300023    1.285    0.000    1.285    0.000 {method 'count' of 'list' objects}
   6900069    0.764    0.000    0.764    0.000 {built-in method _operator.index}
 """
-# optimizing of generate_date_list()
-
-
-
-
-
-
+# optimizing of generate_date_list(), app. 1 sec, deleting of get_string_date()
+"""   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        2    5.116    2.558    5.117    2.558 {built-in method builtins.input}
+   100001    3.269    0.000   10.692    0.000 birthday_paradox.py:20(generate_date_list)
+  2300023    3.159    0.000    6.539    0.000 random.py:292(randrange)
+  2300023    1.851    0.000    2.626    0.000 random.py:239(_randbelow_with_getrandbits)
+  2300023    1.315    0.000    1.315    0.000 {method 'count' of 'list' objects}
+  6900069    0.754    0.000    0.754    0.000 {built-in method _operator.index}
+   100001    0.612    0.000    1.928    0.000 birthday_paradox.py:31(check_match_birthdays)
+  2300023    0.552    0.000    0.552    0.000 {built-in method fromordinal}
+"""
