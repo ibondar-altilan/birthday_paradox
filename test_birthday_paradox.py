@@ -11,11 +11,12 @@ PYTHON_VERSION = sys.version_info     # get a current version
 class TestGetStringDate:
     def test_return_value(self):
         self.ordinal = 1
-        assert get_string_date(self.ordinal) == 'Jan01'
-
+        assert get_string_date(self.ordinal) == 'Jan 1'
+        self.ordinal = 365
+        assert get_string_date(self.ordinal) == 'Dec 31'
 
 class TestGenerateDataList:
-    length = 3
+    length = 23
     days_in_year = DAYS_IN_YEAR
     result = generate_date_list(length, days_in_year)
 

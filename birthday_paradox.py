@@ -12,16 +12,15 @@ import random
 MAX_BIRTHDAYS = 100  # max birthdays in the testing group
 PRINT_FORMAT = 10    # define a number of values while birthdays list is printing
 SIMULATION_NUMBER = 100_000   # group simulation SIMULATION_NUMBER times
+MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', "Jul", 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 DAYS_IN_YEAR = 365  # without leap years
 # DAYS_IN_YEAR = datetime.date.max.toordinal()  # include leap years
 
 
 def get_string_date(date_as_ordinal):
-    """Return string date 'MthDD' from ordinal date"""
+    """Return string date 'Mth DD' or 'Mth D' from ordinal date"""
     date = datetime.date.fromordinal(date_as_ordinal)  # object of the date type
-    month = f'{date:%b}'  # fetch a month as 'Mth'
-    day = f'{date:%d}'  # fetch a date as 'NN'
-    return month + day
+    return MONTHS[date.month - 1] + ' ' + str(date.day)
 
 
 def generate_date_list(length, days_in_year):
@@ -45,15 +44,16 @@ def check_match_birthdays(birthdays):
 
 
 def print_birthdays_list(birthdays):
-    """output birthdays list in a humane readable format MthDD, MthDD
+    """output birthdays list in a humane readable format 'Mth D', 'Mth DD'
     {PRINT_FORMAT} items on each line"""
     i = 1
-    for x in birthdays:
+    for x in birthdays[:len(birthdays) - 1]:
         if i % PRINT_FORMAT != 0:
-            print(x, end=' ')
+            print(x, end=', ')
         else:
             print(x)
         i += 1
+    print(birthdays[len(birthdays) - 1])
     print()
 
 
