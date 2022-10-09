@@ -52,3 +52,13 @@ profile.print_stats()
    100001    0.612    0.000    1.928    0.000 birthday_paradox.py:31(check_match_birthdays)
   2300023    0.552    0.000    0.552    0.000 {built-in method fromordinal}
 """
+# optimizing check_match_birthdays () more clear code with collections.Counter()
+"""ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        2    4.579    2.290    4.579    2.290 {built-in method builtins.input}
+   100001    3.405    0.000   11.145    0.000 birthday_paradox\birthday_paradox.py:23(generate_date_list)
+  2300023    3.302    0.000    6.817    0.000 random.py:292(randrange)
+  2300023    1.903    0.000    2.709    0.000 random.py:239(_randbelow_with_getrandbits)
+   100001    1.467    0.000    1.943    0.000 birthday_paradox.py:34(check_match_birthdays)
+  6900069    0.806    0.000    0.806    0.000 {built-in method _operator.index}
+  2300023    0.584    0.000    0.584    0.000 {built-in method fromordinal}
+"""

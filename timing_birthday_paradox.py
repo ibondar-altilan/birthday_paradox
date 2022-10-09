@@ -1,24 +1,9 @@
 import timeit
 import datetime
 import random
-from datetime import date
+from collections import Counter
 MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', "Jul", 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-
-def get_string_date(date_as_ordinal):
-    """Return string date 'Mth DD' or 'Mth D' from ordinal date"""
-    date = datetime.date.fromordinal(date_as_ordinal)  # object of the date type
-    return MONTHS[date.month - 1] + ' ' + str(date.day)
-
-
-# def generate_date_list(length, days_in_year):
-#     """Return a date list with length as strings 'MthDD'"""
-#     result = []
-#     for i in range(length):
-#         ordinal_date = random.randrange(1, days_in_year)
-#         string_date = get_string_date(ordinal_date)
-#         result.append(string_date)
-#     return result
 
 def generate_date_list(length, days_in_year):
     """Return a date list with length as strings 'MthDD'"""
@@ -31,10 +16,35 @@ def generate_date_list(length, days_in_year):
     return result
 
 
+def check_match_birthdays(birthdays):
+    "Return a dict {date, number) of matching birthdays in group list"
+    count = Counter()
+    for x in birthdays:
+        count[x] += 1
+    return {k: v for (k, v) in count.items() if v > 1}
+    # return count
+
+"""def check_match_birthdays(birthdays):
+    "Return a dict {date, number) of matching birthdays in group list"
+    matches = {}
+    for x in birthdays:
+        number = birthdays.count(x)
+        if number > 1:    # some matching found
+            matches[x] = number
+    return matches
+"""
+
+
 def main():
-    print(get_string_date(365))
-    setup = """from timing_birthday_paradox import generate_date_list; from random import randrange"""
-    code = 'generate_date_list(23, 365)'
+    setup = """\
+from timing_birthday_paradox import check_match_birthdays
+from timing_birthday_paradox import generate_date_list
+birthdays = generate_date_list(23, 365)
+"""
+    code = 'check_match_birthdays(birthdays)'
+
+    # setup = """from timing_birthday_paradox import generate_date_list; from random import randrange"""
+    # code = 'generate_date_list(23, 365)'
 
     # setup = """from random import randrange"""
     # code = 'randrange(1, 365)'
@@ -51,7 +61,7 @@ def main():
     # setup = """from random import choice"""
     # code = 'choice(range(1, 365))'
 
-    res = timeit.timeit(stmt=code, setup=setup, number=100_000)
+    res = timeit.repeat(stmt=code, setup=setup, repeat=5, number=100_000)
     print(res)
 
 
